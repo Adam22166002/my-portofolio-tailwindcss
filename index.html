@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Adam</title>
+
+    <link href="./dist/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="manifest" href="/manifest.json">
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-messaging.js"></script>
+    <!-- script dark mode, refresh -->
+    <script>
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
+  </head>
+  <body>
+    <!-- header start -->
+     <header class="bg-transparent shadow-md absolute top-0 left-0 w-full flex items-center z-10" data-aos="fade-down" data-aos-duration="500">
+      <div class="container">
+        <div class="flex items-center justify-between relative">
+          <div class="px-4">
+            <a href="#home" class="font-ital text-lg text-primary py-6 flex items-center space-x-2">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 54 33" width="24" height="24">
+                  <g clip-path="url(#prefix__clip0)">
+                    <path fill="#38bdf8" fill-rule="evenodd" d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z" clip-rule="evenodd"/>
+                  </g>
+                  <defs>
+                    <clipPath id="prefix__clip0">
+                      <path fill="#fff" d="M0 0h54v32.4H0z"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </span>
+              <span>My Portofolio</span>
+            </a>
+          </div>
+          <!-- nav -->
+          <div class="flex items-center px-4">
+            <button id="hamberger" name="hamberger" type="button" class="block absolute right-4 lg:hidden">
+              <span class="hamberger-line transition duration-300 ease-in-out origin-top-left"></span>
+              <span class="hamberger-line transition duration-300 ease-in-out"></span>
+              <span class="hamberger-line transition duration-300 ease-in-out origin-bottom-left"></span>
+            </button>
+
+            <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none dark:bg-dark lg:dark:bg-transparent dark:shadow-slate-500">
+              <ul class="block lg:flex">
+                <li class="group">
+                  <a href="#home" class="text-base text-dark py-2 mx-5 flex group-hover:text-primary dark:text-white">Home</a>
+                </li>
+                <li class="group">
+                  <a href="#about" class="text-base text-dark py-2 mx-5 flex group-hover:text-primary dark:text-white">About</a>
+                </li>
+                <li class="group">
+                  <a href="#clients" class="text-base text-dark py-2 mx-5 flex group-hover:text-primary dark:text-white">Skillset</a>
+                </li>
+                <li class="group">
+                  <a href="#portfolio" class="text-base text-dark py-2 mx-5 flex group-hover:text-primary dark:text-white">Project</a>
+                </li>
+                <li class="group">
+                  <a href="#contact" class="text-base text-dark py-2 ml-5 mr-11 flex group-hover:text-primary dark:text-white pr-5">Contact</a>
+                </li>
+                <!-- bikin dark mode -->
+                <li class="flex items-center pd-8 mt-3 lg:mt-0">
+                  <div class="flex">
+                    <span class="mr-2 text-sm text-slate-500"></span>
+                    <input type="checkbox" class="hidden" id="dark-toggle" />
+                    <label for="dark-toggle">
+                      <div class="flex h-5 w-9 cursor-pointer items-center rounded-full bg-slate-500 p-1">
+                        <div class="toggle-circle h-4 w-4 rounded-full bg-white transition duration-300 ease-in-out"></div>
+                      </div>
+                    </label>
+                    <span class="ml-2 text-sm text-slate-500"></span>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+
+          </div>
+        </div>
+      </div>
+     </header>
+     <!-- header end -->
+
+    <!-- hero section -->
+    <section id="home" class="pt-36 dark:bg-dark">
+      <div class="container">
+        <div class="flex flex-wrap">
+          <div class="w-full self-end px-4 lg:w-1/2 md:order-last">
+            <h1 class="text-base font-light te md:text-xl dark:text-gray-400">
+              <span class="block font-bold text-primary text-4xl mt-1 lg:text-5xl dark:text-primary">Hi,
+                <span id="berjalan" class="acme-regular"></span>
+              <span id="cursor" class="blinking-cursor">|</span>
+              </span>
+            </h1> 
+            <h4 class="font-medium text-secondary text-lg mt-2 mb-8 lg:text-2xl">
+              Professional <span class="text-primary">Frontend Development and System Computer</span> with experience skills in technology field.
+            </h4>
+
+            <div class="flex flex-col items-start space-y-4 md:flex-row md:space-y-0 md:space-x-4 mb-8 lg:mb-12">
+              <a
+                href="https://www.linkedin.com/in/adam-8107ba307/" target="_blank"
+                class="text-base font-semibold text-white bg-primary py-3 px-6 rounded-[0.9rem] hover:shadow-lg hover:bg-primary transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 dark:text-white"
+                >Let's Connect on LinkedIn <i class="bi bi-linkedin"></i> </a>
+              
+              <a
+                href="/dist/img/CV - Adam 2024.pdf" download="Adam-CV"
+                class="text-base font-semibold text-primary border-2 border-primary mb-8 py-2 px-5 rounded-[0.9rem] transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300"
+              >
+                CV <i class="bi bi-arrow-down-circle"></i>
+              </a>
+            </div>
+            <div class="flex items-center">
+              <!-- Kontak wa -->
+              <a href="https://api.whatsapp.com/send/?phone=6285640600585&text&type=phone_number&app_absent=0" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 dark:text-white"><i class="bi bi-whatsapp"></i></a>
+              <!-- Email -->
+              <a href="mailto:adam.visionary15@gmail.com" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 dark:text-white"><i class="bi bi-envelope"></i></a>
+              <!-- Tiktok -->
+               <a href="https://www.tiktok.com/@_adam.dev?_t=8r1h4W2bILy&_r=1" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 dark:text-white"><i class="bi bi-tiktok"></i></a>
+              <!-- instragram -->
+              <a href="https://www.instagram.com/_adam.dev/profilecard/?igsh=MTBzaGRubGtlaGZ1" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 dark:text-white"><i class="bi bi-instagram"></i></a>
+              <!-- Linkedin -->
+              <a href="https://www.linkedin.com/in/adam-8107ba307/" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 dark:text-white"><i class="bi bi-linkedin"></i></a>
+              <!-- Github -->
+              <a href="https://github.com/Adam22166002" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out delay-150 hover:-translate-y-1 hover:scale-100 dark:text-white"><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+
+          <div class="w-full self-center mt-5 px-4 lg:w-1/2 md:order-first">
+            <div class="relative mt-10 lg:mt-9 lg:right-0">
+              <img
+                src="./dist/img/portfolio_profile.png"
+                alt="profile"
+                class=" relative  z-10 w-[25rem] mx-auto"
+              />
+              <span
+                class="absolute -bottom-0 left-1/2 -translate-x-1/2 md:-scale-y-125"
+              >
+                <svg
+                  width="350"
+                  height="350"
+                  viewBox="0 0 200 200"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="#0099ff"
+                    d="M63.2,-49.7C77.1,-32.9,80.3,-6.9,75.2,17.9C70.1,42.6,56.7,66.2,36.7,75.6C16.7,85,-9.8,80.2,-31.6,68.6C-53.4,57,-70.5,38.5,-71.3,20.4C-72.1,2.4,-56.6,-15.2,-42,-32.1C-27.5,-49,-13.7,-65.2,5.4,-69.6C24.6,-73.9,49.3,-66.4,63.2,-49.7Z"
+                    transform="translate(100 100)"
+                    scale(1.2)
+                  ></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="text-primary w-full truncate text-ellipsis overflow-hidden sm:w-1/2 m-4" id="token"></div>
+          <div id="err"></div>
+          <br />
+          <div id="notificationContainer" class="px-4">
+            <button class="bg-primary mr-4 py-3 px-5 text-white rounded-md hover:bg-opacity-10" id="notificationButton">🔔 Subscribe Notification</button>
+          <div>
+        </div>
+      </div>
+    
+    </section>
+    <!-- hero section -->
+
+    <!-- about section -->
+    <section id="about" class="pt-36 pb-0 dark:bg-dark">
+      <div class="container mx-auto">
+        <div class="flex flex-wrap">
+          <div class="w-full px-4 mb-10 lg:w-1/2" data-aos="fade-right" data-aos-duration="1000">
+            <a href="#about" class="font-semibold text-3xl text-primary mx-8 flex mt-10 mb-4 max-w-md lg:text4xl dark:text-white">About Me</a>                       
+            <p class="font-medium text-base text-secondary max-w-xl lg:text-lg">
+              I am an Information Systems student at STMIK Tegal who is dedicated to the field of information technology. I am actively involved in various web application development projects and have technical experience of computer systems. The integration of my studies and work experience brings excellence in project management and analytical skills in various positions in IT, while continuing to explore further in Frontend Development.
+            </p>
+          </div>
+          <div class="w-full px-4 lg:w-1/2" data-aos="fade-left" data-aos-duration="1000">
+            <h3 class="font-semibold text-primary text-2xl mx-8 mb-4 lg:text-3xl lg:pt-10 dark:text-white">Social Media</h3>
+            <p class="font-medium text-base text-secondary mb-6 lg:text-lg">
+              Ikuti saya di sosial media untuk mendapatkan berbagai pengalaman, proyek menarik, dan informasi terkini seputar teknologi! 💡 Ayo bersama kita mengeksplorasi konten inspiratif dan berbagi perjalanan profesional.
+            </p>
+            <div class="flex items-center">
+              <!-- Tiktok -->
+               <a href="https://www.tiktok.com/@_adam.dev?_t=8r1h4W2bILy&_r=1" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><svg role="img" class="fill-current" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>TikTok</title><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"></path></svg></a>
+              <!-- instragram -->
+              <a href="https://www.instagram.com/_adam.dev/profilecard/?igsh=MTBzaGRubGtlaGZ1" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><svg role="img" class="fill-current" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"></path></svg></a>
+              <!-- Linkedin -->
+              <a href="https://www.linkedin.com/in/adam-8107ba307/" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><svg role="img" class="fill-current" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+            <!-- Github -->
+            <a href="https://github.com/Adam22166002" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><i class="bi bi-github"></i></a>
+            </div>                     
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- about section -->
+
+    <!-- Project  section -->
+    <svg class="svg-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="background: #f1f5f9;"><path class="dark:fill-dark bg-none; dark:opacity-100" fill="white" fill-opacity="1" d="M0,32L30,58.7C60,85,120,139,180,170.7C240,203,300,213,360,192C420,171,480,117,540,90.7C600,64,660,64,720,90.7C780,117,840,171,900,176C960,181,1020,139,1080,144C1140,149,1200,203,1260,218.7C1320,235,1380,213,1410,202.7L1440,192L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"></path></svg>
+    <section id="portfolio" class="pt-0 pb-16 bg-slate-100 dark:bg-slate-800">
+      <div class="container mx-auto px-4">
+        <div class="max-w-xl mx-auto mb-8 text-center">
+          <h2 class="text-3xl font-bold text-primary mb-4 sm:text-4xl lg:text-5xl" data-aos="fade-down" data-aos-duration="1000">
+            Project Terbaru
+          </h2>
+          <p class="font-medium text-md text-secondary md:text-lg" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+            Below are some side projects that I consider interesting and have worked on. Some projects have not been updated by me because there are more important things to work on.
+          </p>
+        </div>
+    
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div class="bg-white dark:bg-slate-200 shadow-lg rounded-lg overflow-hidden transform scale-100 hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-duration="1000">
+            <img src="/dist/img/portfolio/project1.jpg" class="w-full h-48 object-cover" alt="project1">
+            <div class="p-6">
+              <h5 class="text-xl font-bold mb-4">My Property</h5>
+              <div class="flex items-center space-x-2 mb-4">
+                <img src="dist/img/html.webp" class="w-8 h-8" />
+                <img src="dist/img/css.webp" class="w-8 h-8" />
+                <img src="dist/img/javascript.webp" class="w-8 h-8" />
+              </div>
+              <p class="text-gray-700 mb-4">
+                MyProperti is a landing page designed to promote and display information and menus related to house properties. This project aims to provide an attractive and informative user interface experience for visitors who are interested in available properties.
+              </p>
+              <a href="https://github.com/Adam22166002/webLaddingPage-MyProperti" class="inline-block bg-primary text-white mb-0 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                <i class="fa fa-github"></i> View
+              </a>
+            </div>
+          </div>
+          <!-- Project 2 -->
+          <div class="bg-white dark:bg-slate-200 shadow-lg rounded-lg overflow-hidden transform scale-100 hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-duration="1000">
+            <img src="dist/img/portfolio/project2.jpg" class="w-full h-48 object-cover" alt="project2">
+            <div class="p-6">
+              <h5 class="text-xl font-bold mb-4">Web Movie API</h5>
+              <div class="flex items-center space-x-2 mb-4">
+                <img src="dist/img/html.webp" class="w-8 h-8" />
+                <img src="dist/img/css.webp" class="w-8 h-8" />
+                <img src="dist/img/javascript.webp" class="w-8 h-8" />
+              </div>
+              <p class="text-gray-700 mb-4">
+                Web Movie API is a web project that allows users to search and get information about movies through APIs. The project uses HTML, CSS, JavaScript, and Axios to create an interactive and responsive web application.
+              </p>
+              <a href="https://github.com/Adam22166002/Project-Web-Movie-API" class="inline-block bg-primary text-white mb-0 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                <i class="fa fa-github"></i> View
+              </a>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div class="bg-white dark:bg-slate-200 shadow-lg rounded-lg overflow-hidden transform scale-100 hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-duration="1000">
+            <img src="/dist/img/portfolio/project3.jpg" class="w-full h-48 object-cover" alt="project3">
+            <div class="p-6">
+              <h5 class="text-xl font-bold mb-4">To Do List Sederhana</h5>
+              <div class="flex items-center space-x-2 mb-4">
+                <img src="dist/img/html.webp" class="w-8 h-8" />
+                <img src="dist/img/css.webp" class="w-8 h-8" />
+                <img src="dist/img/javascript.webp" class="w-8 h-8" />
+              </div>
+              <p class="text-gray-700 mb-4">
+                Project MyToDo List is a web application for managing to-do lists. The project allows users to add, edit, and delete tasks, as well as mark completed tasks. The application is built using HTML, CSS, and JavaScript to manipulate and store data.
+              </p>
+              <a href="https://github.com/Adam22166002/Project-My-To-Do-List" class="inline-block bg-primary text-white mb-0 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                <i class="fa fa-github"></i> View
+              </a>
+            </div>
+          </div>
+          <!-- Project 4 -->
+          <div class="bg-white dark:bg-slate-200 shadow-lg rounded-lg overflow-hidden transform scale-100 hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-duration="1000">
+            <img src="dist/img/portfolio/project4.png" class="w-full h-48 object-cover" alt="project4">
+            <div class="p-6">
+              <h5 class="text-xl font-bold mb-4">Pemilihan kursi - Javascript</h5>
+              <div class="flex items-center space-x-2 mb-4">
+                <img src="dist/img/html.webp" class="w-8 h-8" />
+                <img src="dist/img//css.webp" class="w-8 h-8" />
+                <img src="dist/img/javascript.webp" class="w-8 h-8" />
+              </div>
+              <p class="text-gray-700 mb-4">
+                This project is a simple web application for seat selection in movie theaters built using HTML, CSS, and JavaScript. This application is designed to provide a simulated user experience in selecting and seats in a movie theater.
+              </p>
+              <a href="https://github.com/Adam22166002/Web-Pemesanan-Tiket-Biskop-Sederhana" class="inline-block bg-primary text-white mb-0 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                <i class="fa fa-github"></i> View
+              </a>
+            </div>
+          </div>
+          <!-- Project 5 -->
+          <div class="bg-white dark:bg-slate-200 shadow-lg rounded-lg overflow-hidden transform scale-100 hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-duration="1000">
+            <img src="dist/img/portfolio/project5.png" class="w-full h-48 object-cover" alt="project5">
+            <div class="p-6">
+              <h5 class="text-xl font-bold mb-4">Portofolio Profile </h5>
+              <div class="flex items-center space-x-2 mb-4">
+                <img src="dist/img/html.webp" class="w-8 h-8" />
+                <img src="dist/img/css.webp" class="w-8 h-8" />
+                <img src="dist/img/javascript.webp" class="w-8 h-8" />
+                <img src="dist/img/tailwindcss.webp" style="width: 80px;" />
+              </div>
+              <p class="text-gray-700 mb-4">
+                A responsive personal portfolio website built using Tailwind CSS. This website showcases my skills, projects, education, and work experience. The design is responsive and modern, with easy navigation between sections such as Home, About, Projects, skills, and Contact.
+              </p>
+              <a href="#" class="inline-block bg-primary text-white mb-0 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                <i class="fa fa-github"></i> View
+              </a>
+            </div>
+          </div>
+          <!-- Project 6 -->
+          <div class="bg-white dark:bg-slate-200 shadow-lg rounded-lg overflow-hidden transform scale-100 hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-duration="1000">
+            <img src="/dist/img/portfolio/project6.jpg" class="w-full h-48 object-cover" alt="project6">
+            <div class="p-6">
+              <h5 class="text-xl font-bold mb-4">CRUD Laravel - Data Bank</h5>
+              <div class="flex items-center space-x-2 mb-4">
+                <img src="dist/img/html.webp" class="w-8 h-8" />
+                <img src="dist/img/css.webp" class="w-8 h-8" />
+                <img src="dist/img/boostrap.webp" class="w-12 h-12" />
+                <img src="dist/img/laravel.webp" class="w-10 h-12" />
+                <img src="dist/img/mysql.webp" class="w-12 h-12" />
+              </div>
+              <p class="text-gray-700 mb-4">
+                This application allows users to manage bank data with CRUD features (Create, Read, Update, Delete) and Report Features (Export to PDF, Export to Excel).
+              </p>
+              <a href="https://github.com/Adam22166002/AplikasiCRUD-Databank-Laravel10" class="inline-block bg-primary text-white mb-0 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                <i class="fa fa-github"></i> View
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> 
+    <!-- Project  section -->
+
+    <!-- Skillset section -->
+     <section id="clients" class="pt-16 pb-16 bg-slate-700 dark:bg-slate-300">
+      <div class="container mx">
+        <div class="max-w-xl mx-auto text-center px-4">
+          <div class=" mx-auto text-center mb-16">
+            <h2 class="font-bold text-primary text-3xl mb-4 sm:text-4xl lg:text-5xl dark:text-dark" data-aos="fade-down" data-aos-duration="1000">Skillset</h2>
+            <p class="font-medium text-md text-slate-300 md:text-lg" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="300">Here are some of the technologies I frequently work with. I continuously expand my knowledge and stay updated with the latest advancements in these tools</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col">
+          <div class="flex justify-center items-center mx-auto" data-aos="fade-down" data-aos-duration="1000">
+            <div class="flex space-x-3">
+              <img
+                src="/dist/img/html.webp"
+                class="object-cover transform scale-100 hover:scale-110 transition duration-300"
+                style="width: 70px; height: 70px;"
+                alt="HTML"
+              />
+              <img
+                src="dist/img/css.webp"
+                class="object-cover transform scale-100 hover:scale-110 transition duration-300"
+                style="width: 70px; height: 70px;"
+                data-aos-delay="300"
+                alt="CSS"
+              />
+              <img
+                src="dist/img/javascript.webp"
+                class="object-cover transform scale-100 hover:scale-110 transition duration-300"
+                style="width: 70px; height: 70px;"
+                data-aos-delay="500"
+                alt="JavaScript"
+              />
+              <img
+                src="dist/img/boostrap.webp"
+                class="object-cover transform scale-100 hover:scale-110 transition duration-300"
+                style="width: 80px; height: 80px; margin-top: 0;"
+                data-aos-delay="800"
+                alt="boostrap"
+              />
+            </div>
+          </div>
+          <div class="flex justify-center items-center mx-auto mt-4" data-aos="fade-down" data-aos-duration="1000">
+            <div class="flex space-x-3">
+              <img
+                src="dist/img/tailwindcss.webp"
+                class="object-cover transform scale-100 hover:scale-110 transition duration-300"
+                style="width: 70px; height: 70px;"
+                data-aos-delay="1000"
+                alt="tailwindcss"
+              />
+              <img
+                src="dist/img/mysql.webp"
+                class="object-cover transform scale-100 hover:scale-110 transition duration-300"
+                style="width: 70px; height: 70px;"
+                data-aos-delay="1200"
+                alt="MySQL"
+              />
+              <img
+                src="dist/img/laravel.webp"
+                class="object-cover transform scale-100 hover:scale-110 transition duration-300"
+                style="width: 70px; height: 70px;"
+                data-aos-delay="1500"
+                alt="Laravel"
+              />
+              <img
+                src="dist/img/reactjs.webp"
+                class="object-cover transform scale-100 hover:scale-110 transition duration-300"
+                style="width: 70px; height: 70px;"
+                data-aos-delay="1800"
+                alt="reactjs"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+     </section>
+    <!-- Skillset section -->
+
+    <!-- Certificate section -->
+    <section id="certificate" class="pt-32 pb-24 bg-slate-100 dark:bg-dark">
+      <div class="container">
+        <div class="w-full px-4">
+          <div class="max-w-2xl mx-auto text-center mb-14">
+            <h4 class="font-bold text-primary text-3xl mb-4 sm:text-4xl lg:text-5xl" data-aos="fade-down" data-aos-duration="1000">Licenses & certifications</h2>
+            <p class="font-medium text-md text-secondary md:text-lg" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">The list of certifications I have earned shows my dedication to the field of computer systems and web development. Each certification strengthens my competence in meeting the challenges of modern technology. These certifications demonstrate my technical ability, and my commitment to continue growing in the dynamic world of IT.</p>
+          </div>
+        </div>
+
+          <div id="scroll-container" class="overflow-x-scroll flex space-x-3 scrollbar-hide" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+            <!-- Sertifikat 1 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+                <img src="/dist/img/certificate/certificate1.jpg" alt="Sertifikat 1" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                  <h3 class="mt-4 text-x font-semibold">Graduation Certificate of Competency</h3>
+                  <p class="text-sm text-gray-600">Sertifikat Course Dicoding9 Academy Lulus kelas "Belajar Dasar Pemograman Web"</p>
+                  <a href="https://drive.google.com/file/d/1H1Uc6oH3g8xKVfPECokns4dUbZB7eofS/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                    <i class="bi bi-card-image"></i> View Sertifikat
+                  </a>
+              </div>
+            </div>
+            <!-- Sertifikat 2 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+                <img src="/dist/img/certificate/certificate2.webp" alt="Sertifikat 2" class="w-full h-48 object-cover rounded-t-lg">
+                <div class="p-3">
+                  <h3 class="mt-4 text-x font-semibold">Certificate Myskill Short Class</h3>
+                  <p class="text-sm text-gray-600">Menyelesaikan Short Class Backend Development Fundamentals</p>
+                  <a href="https://drive.google.com/file/d/1C1pq2DxMZUs7shOQT3iI8P9qAPvyWdWF/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                    <i class="bi bi-card-image"></i> View Sertifikat
+                  </a>
+                </div>
+            </div>
+            <!-- Sertifikat 3 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate3.webp" alt="Sertifikat 3" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Certificate of Course Completion</h3>
+                <p class="text-sm text-gray-600">Frontend - HTML- BROWSER, HTTP, DNS, AND HOSTING.</p>
+                <a href="https://drive.google.com/file/d/1o8q39Qjx1BKPmozbaKvVMp5shNp6H-MY/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 4 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate4.webp" alt="Sertifikat 4" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Certificate of Skill Specialization</h3>
+                <p class="text-sm text-gray-600">Completed a Full Topic with Specialization in WEBSITE DEVELOPMENT FUNDAMENTAL</p>
+                <a href="https://drive.google.com/file/d/1UKO2p6yD7eZKhY4K_KO0J84fDVAOOR37/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 5 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate5.jpg" alt="Sertifikat 5" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Certificate of Skill Specialization - HTML</h3>
+                <p class="text-sm text-gray-600">Completed a Full Topic with Specialization HTML</p>
+                <a href="https://drive.google.com/file/d/13GsXFL5vH0VL7k74GDDFXiMVHya7p9n7/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+              <!-- sertifikat 6 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate6.jpg" alt="Sertifikat 6" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Certificate of Skill Specialization - CSS</h3>
+                <p class="text-sm text-gray-600">Completed a Full Topic with Specialization CSS</p>
+                <a href="lhttps://drive.google.com/file/d/1DqBL_jVgGoHO87o0B0tkFGjL0rxUFrD_/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- Sertifikat 7 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate7.jpg" alt="Sertifikat 7" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Oracle Java Fundamentals</h3>
+                <p class="text-sm text-gray-600"> Sertifikasi dasar pemograman Java, termasuk Object Oriented Programming (OOP), dan algoritma.</p>
+                <a href="https://drive.google.com/file/d/1uT7mOHLyrkrCYxqOUnviK756Xk9lJWJB/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 8 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate8.jpg" alt="Sertifikat 8" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Sertifikat Database Foundations</h3>
+                <p class="text-sm text-gray-600">Telah Menyelesaikan Dasar-dasar database dan implementasi basis data SQL.</p>
+                <a href="https://drive.google.com/file/d/1v1bPI48glN1o0issVgh8hDoKxcxfi3n2/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 9 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate9.png" alt="Sertifikat 9" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Certificate Of Completion</h3>
+                <p class="text-sm text-gray-600"> For completing Fast Track Free Bootcamp in Business development - Rocket Digital</p>
+                <a href="https://drive.google.com/file/d/1R2TTp7ceKSZiysIxRSH4Qjxe0MN9Ohgg/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 10 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate10.jpg" alt="Sertifikat 10" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Sertifikat Praktek Kerja Industri</h3>
+                <p class="text-sm text-gray-600">Internship Certificate: Expertise Competency: Computer Network Engineering
+                  X-treme Computer Slawi - March s/d April 2021</p>
+                <a href="https://drive.google.com/file/d/1v1bPI48glN1o0issVgh8hDoKxcxfi3n2/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 11 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate11.jpg" alt="Sertifikat 11" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Certificate of Skill Competency</h3>
+                <p class="text-sm text-gray-600">Computer Network Engineering Expertise Competency Test
+                  SMK NU Hasyim Asy'ari Tarub - CV Jaya Unggul Sentosa</p>
+                <a href="https://drive.google.com/file/d/1deG9a1cTFAqv-NrfUYpt_zES_ZV2jCcL/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 12 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate12.jpg" alt="Sertifikat 2" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Certificate of Competency</h3>
+                <p class="text-sm text-gray-600">Qualification Level II at Computer and Network Engineering Skills Competency
+                  -(on Behalf Of) BNSP</p>
+                <a href="https://drive.google.com/file/d/1d1peKneM5ZFwgDhj4IaqF0mgAbziRvqI/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 13 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate13.jpg" alt="Sertifikat 13" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">sertifikat Kompetensi</h3>
+                <p class="text-sm text-gray-600">Menyelesaikan dan meraih kelulusan dalam ujian kompetensi Fundamentals Microsoft Office - STMIK Tegal</p>
+                <a href="https://drive.google.com/file/d/1uYx1FCfPHzO94LS1idM6CBG-0ciU9jUj/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 14 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate14.webp" alt="Sertifikat 14" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">Sertifikat Nasional 2024</h3>
+                <p class="text-sm text-gray-600">Peserta Indonesia Youth Potential #untkindonesia - PT. Bicara Official Indonesia</p>
+                <a href="https://drive.google.com/file/d/1JhImoGkcYOQ2rN7qPgPMr13DHujiDobv/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+            <!-- sertifikat 15 -->
+            <div class="flex-none w-96 sm:w-72 md:w-80 lg:w-96 h-96 bg-white rounded-lg shadow-md p-4 dark:bg-slate-500">
+              <img src="/dist/img/certificate/certificate15.webp" alt="Sertifikat 15" class="w-full h-48 object-cover rounded-t-lg">
+              <div class="p-3">
+                <h3 class="mt-4 text-x font-semibold">sertifikat Participation</h3>
+                <p class="text-sm text-gray-600">Berpartisipasi dalam Workshop Bicara dengan Percaya Diri - STMIK Tegal</p>
+                <a href="https://drive.google.com/file/d/1G8UO-8RqXtArFyvbvXxGwd6AI4cOQReI/view?usp=sharing" target="_blank" class="inline-block bg-primary text-white mt-4 py-2 px-4 rounded-md transition ease-in-out delay-150 hover:shadow-lg hover:-translate-y-1 hover:scale-100 hover:text-white hover:bg-primary duration-300">
+                  <i class="bi bi-card-image"></i> View Sertifikat
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- button scrol -->
+          <div class="flex justify-center space-x-4 my-4">
+            <button id="scroll-left" class="text-center border border-slate-500 text-slate-500 p-2 rounded-full shadow-md hover:text-primary hover:border-primary focus:outline-none">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <button id="scroll-right" class="text-center border border-slate-500 text-slate-500 p-2 rounded-full shadow-md hover:text-primary hover:border-primary focus:outline-none">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>          
+      </div>
+    </section>
+    <!-- Certificate section -->        
+
+    <!-- Kontak section -->
+    <section id="contact" class="pt-36 pb-32 dark:bg-slate-800" >
+      <div class="container" >
+        <div class="w-full px-4">
+          <div class="max-w-2xl mx-auto text-center mb-16" data-aos="fade-down" data-aos-duration="1000">
+            <h4 class="font-bold text-primary text-3xl mb-4 sm:text-4xl lg:text-5xl">Contact Me</h2>
+            <p class="font-medium text-md text-secondary md:text-lg">Feel free to contact me through the details below. I am open to discussing job opportunities, project collaboration, or simply sharing insights in the field of computer systems and web development.</p>
+          </div>
+        </div>
+    
+        <div class="w-full px-4 flex flex-wrap justify-center rounded-sm xl:w-11/12 xl:mx-auto" data-aos="fade-down" data-aos-duration="1000">
+          <div class="mb-10 p-4 bg-slate-100 md:w-8/12 dark:bg-slate-500 rounded-sm">
+            <form id="contactForm" class="mr-5">
+              <div class="flex flex-wrap">
+                <div class="w-full md:w-1/2 p-2">
+                  <div class="w-full mb-6 px-4">
+                    <label for="name" class="text-base text-primary font-medium">Nama</label>
+                    <input type="text" id="name" name="name" class="w-full pb-3 mt-3 pl-2 shadow-md bg-white text-dark rounded-md" required/>
+                  </div>
+                </div>
+                <div class="w-full md:w-1/2 p-2">
+                  <div class="w-full mb-6 px-4">
+                    <label for="email" class="text-base text-primary font-medium">Email</label>
+                    <input type="email" id="email" name="email" class="w-full pb-3 mt-3 pl-2 shadow-md bg-white text-dark rounded-md"  required/>
+                  </div>
+                </div>
+                <div class="w-full p-2">
+                  <div class="w-full mb-6  px-4">
+                    <label for="subject" class="text-base text-primary font-medium">Subject</label>
+                    <input type="text" id="subject" name="subject" class="w-full pb-3 mt-3 pl-2 shadow-md bg-white text-dark rounded-md" required/>
+                  </div>
+                </div>
+                <div class="w-full p-2">
+                  <div class="w-full mb-4 px-4">
+                    <label for="message" class="text-base text-primary font-medium">Pesan</label>
+                    <textarea id="message" name="message" cols="30" rows="3" spellcheck="false" class="w-full pb-3 mt-3 pl-2 shadow-md bg-white text-dark rounded-md"  required></textarea>
+                  </div>
+                </div>
+                <div class="w-full p-4">
+                  <div class="w-full">
+                    <button type="submit" class="btn-kirim text-base font-semibold text-white bg-primary py-3 px-8 rounded-md w-full hover:opacity-80 hover:-translate-y-3 shadow-md duration-500">Kirim Pesan <i class="fa fa-envelope"></i></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Kontak section -->
+    <!-- Footer -->
+     <footer class="bg-dark pt-24 pb-12" data-aos="fade-up" data-aos-duration="500">
+      <div class="container">
+        <div class="flex flex-wrap">
+          <div class="w-full px-4 mb-12 text-slate-300 font-medium md:w-1/3">
+            <a href="home" class="font-bold text-3xl text-primary hover:opacity-80 mb-[1px]">Adam <span class="font-bold text-2xl">| Information System</span></a>
+            <h3 class=" font-semibold text-sm mb-6">Frontend Enthusiast | Computer system enthusiast</h3>
+            <h3 class="font-bold text-2xl mb-1">Hubungi Saya</h3>
+            <p>adam.visionary15@gmail.com</p>
+            <p><i>Jl.Anggrek Bulakwaru Kec.Tarub Kab.Tegal</i></p>
+            <p><i>Kabupaten Tegal</i></p>
+            <p>+6285640600585</p>
+          </div>
+          <div class="w-full px-4 mb-12 md:w-1/3">
+            <h3 class="font-semibold text-white mb-5 text-xl">Blog.id</h3>
+            <ul class="text-slate-300">
+              <li>
+                <a href="#" class="inline-block text-base hover:text-primary mb-3">Teknologi</a>
+              </li>
+              <li>
+                <a href="https://tekno.kompas.com/read/2022/10/11/19150017/perbedaan-web-developer-dan-programmer?page=all" class="inline-block text-base hover:text-primary mb-3">Web Developper</a>
+              </li>
+              <li>
+                <a href="#" class="inline-block text-base hover:text-primary mb-3">programming</a>
+              </li>
+            </ul>
+            </div>
+          <div class="w-full px-4 mb-12 md:w-1/3">
+            <h3 class="font-semibold text-white mb-5 text-xl">Kategori Tautan</h3>
+            <ul class="text-slate-300">
+              <li>
+                <a href="about" class="inline-block text-base hover:text-primary mb-3">Tentang Saya</a>
+              </li>
+              <li>
+                <a href="portfolio" class="inline-block text-base hover:text-primary mb-3">Portfolio</a>
+              </li>
+              <li>
+                <a href="clients" class="inline-block text-base hover:text-primary mb-3">clients</a>
+              </li>
+              <li>
+                <a href="blog" class="inline-block text-base hover:text-primary mb-3">Blog</a>
+              </li>
+              <li>
+                <a href="contact" class="inline-block text-base hover:text-primary mb-3">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="w-full pt-10 border-t border-slate-700">
+          <div class="flex items-center justify-center mb-5">
+            <!-- Kontak wa -->
+            <a href="https://api.whatsapp.com/send/?phone=6285640600585&text&type=phone_number&app_absent=0" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><i class="bi bi-whatsapp"></i></a>
+            <!-- Email -->
+            <a href="mailto:adam.visionary15@gmail.com" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><i class="bi bi-envelope"></i></a>
+            <!-- tiktok -->
+             <a href="https://www.tiktok.com/@_adam.dev?_t=8r1h4W2bILy&_r=1" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><svg role="img" class="fill-current" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>TikTok</title><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+            <!-- instragram -->
+            <a href="https://www.instagram.com/_adam.dev/profilecard/?igsh=MTBzaGRubGtlaGZ1" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><svg role="img" class="fill-current" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a>
+            <!-- linkedin -->
+            <a href="https://www.linkedin.com/in/adam-8107ba307/" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><svg role="img" class="fill-current" width="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://github.com/Adam22166002" target="_blank" class="w-9 h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 text-slate-300 hover:border-primary hover:bg-primary hover:text-white"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+        <p class="font-medium text-xs text-slate-500 text-center">&copy; 2024.<a href="home" target="_blank" class="text-bold text-primary hover:opacity-80">Adam</a> dibuat dengan <a href="#" target="_blank" class="font-bold text-sky-500 hover:opacity-80">Tailwind CSS 3</a></p>
+      </div>
+     </footer>
+    <!-- Footer -->
+
+    <!-- back to top -->
+    <a href="#home" class="fixed hidden justify-center items-centerz-[9999] bottom-4 right-4 p-4 h-12 w-13 bg-primary hover:animate-pulse rounded-full" id="to-top">
+      <span class="block w-5 h-5 border-t-2 border-l-2 rotate-45 mt-2"></span>
+    </a>
+    <!-- back to top -->
+
+    <script type="module" src="dist/script.js"></script>
+    <!-- Instal ServiceWorker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(registration => {
+              console.log('ServiceWorker registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.error('ServiceWorker registration failed: ', registrationError);
+            });
+          });
+        }
+    </script>
+    <!-- Instal Firebase -->
+     
+
+    <!-- apikey notifikasi -->
+     
+    <script src="/notification.js"></script>
+
+    <!-- Scroll left right -->
+    <script>
+      const scrollContainer = document.getElementById('scroll-container');
+      const scrollLeftBtn = document.getElementById('scroll-left');
+      const scrollRightBtn = document.getElementById('scroll-right');
+
+      scrollLeftBtn.addEventListener('click', () => {
+          scrollContainer.scrollBy({
+              left: -300, 
+              behavior: 'smooth'
+          });
+      });
+
+      scrollRightBtn.addEventListener('click', () => {
+          scrollContainer.scrollBy({
+              left: 300, 
+              behavior: 'smooth'
+          });
+      });
+    </script>
+    <!-- aos js -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

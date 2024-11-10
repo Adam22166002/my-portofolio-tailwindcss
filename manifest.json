@@ -1,0 +1,21 @@
+{
+  "name": "Portofolio | Adam",
+  "short_name": "Adam",
+  "description": "Portfolio and Professional Profile",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0099ff",
+  "theme_color": "#64748b",
+  "icons": [
+    {
+      "src": "/dist/img/apk-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/dist/img/apk-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
