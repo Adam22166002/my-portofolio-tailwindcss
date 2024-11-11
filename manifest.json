@@ -4,6 +4,7 @@
   "description": "Portfolio and Professional Profile",
   "start_url": "/index.html",
   "display": "standalone",
+  "orientation": "landscape",
   "background_color": "#0099ff",
   "theme_color": "#64748b",
   "icons": [
